@@ -15,6 +15,9 @@ function start() {
     
   
 }
+recognition.addEventListener('end', () => {
+    recognition.start();
+ });
 
 function end(){
     recognition.stop();
@@ -94,6 +97,8 @@ function gotResults(error, results) {
 
         document.getElementById("prediction_2").innerHTML = prediction_2;
 
+        speak_1();
+
         if (prediction_1 == "Vulcan salute") {
             document.getElementById("prediction_1_gesture").innerHTML="&#128406;";
         }
@@ -135,6 +140,16 @@ function gotResults(error, results) {
         }
         if (prediction_2 == "Superb"){
             document.getElementById("prediction_2_gesture").innerHTML="&#128076;";   
+        }
+        function speak_1() {
+            var synth = window.speechSynthesis;
+        
+            speak_data = prediction_1 +"and"+ prediction_2 + "are the predictions.";
+        
+            var utterThis = new SpeechSynthesisUtterance(speak_data);
+        
+            synth.speak(utterThis);
+        
         }
     }
 }

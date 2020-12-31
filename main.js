@@ -15,9 +15,6 @@ function start() {
     
   
 }
-recognition.addEventListener('end', () => {
-    recognition.start();
- });
 
 function end(){
     recognition.stop();
